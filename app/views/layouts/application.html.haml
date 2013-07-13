@@ -1,0 +1,27 @@
+!!! 5
+%html
+  %head
+    %title DonReddit
+    = stylesheet_link_tag    "application", :media => "all"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+
+  %body
+    .container
+      %br
+      - if current_user.present?
+        = link_to 'Sign Out', destroy_user_session_path, :method => :delete 
+      - else
+        = link_to 'Sign In', new_user_session_path
+        = link_to 'Register Now!', new_user_registration_path
+
+      - flash.each do |key, value|
+        .alert.box{ class: "alert-#{key}"}
+          %strong
+            = value
+          %a.close{ :data => { :dismiss => "alert" }}x
+          
+      
+      = yield
+
+      = debug(params) if Rails.env.development?
