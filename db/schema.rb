@@ -11,7 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130709211220) do
+ActiveRecord::Schema.define(:version => 20130715100250) do
+
+  create_table "comments", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "link_id"
+    t.text     "message"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "links", :force => true do |t|
     t.integer  "user_id"
@@ -39,5 +47,13 @@ ActiveRecord::Schema.define(:version => 20130709211220) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+
+  create_table "votes", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "link_id"
+    t.boolean  "up"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
 end

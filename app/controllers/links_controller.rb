@@ -1,7 +1,4 @@
 class LinksController < ApplicationController
-  def index
-    @links = Link.all
-  end
 
   def new
     @link = Link.new
@@ -9,6 +6,7 @@ class LinksController < ApplicationController
 
   def show
     @link = Link.find(params[:id])
+    @comment = Comment.new
   end
 
   def create

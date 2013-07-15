@@ -3,6 +3,7 @@
 = link_to "Add a link", new_link_path
 %ul.unstyled
   - @links.each do |link|
-    %li= link_to link.title, link.url
-
+    %li
+      = link_to link.title, link.url
+      = link_to "Comments", link_path(link)
 = will_paginate @links, renderer: BootstrapPagination::Rails
