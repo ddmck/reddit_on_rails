@@ -7,21 +7,34 @@
     = csrf_meta_tags
 
   %body
+    %br
     .container
-      %br
-      - if current_user.present?
-        = link_to 'Sign Out', destroy_user_session_path, :method => :delete 
-      - else
-        = link_to 'Sign In', new_user_session_path
-        = link_to 'Register Now!', new_user_registration_path
+      .navbar
+        .navbar-inner
+          .container
+            = link_to "Reddit on Rails", root_path, class: "brand"
+            .nav-collapse.pull-right
+              %ul.nav
+                - if current_user.present?
+                  %li= link_to 'Sign Out', destroy_user_session_path, :method => :delete
+                - else
+                  %li= link_to 'Sign In', new_user_session_path
+                  %li= link_to 'Register Now!', new_user_registration_path 
 
+    .container
       - flash.each do |key, value|
         .alert.box{ class: "alert-#{key}"}
           %strong
             = value
           %a.close{ :data => { :dismiss => "alert" }}x
           
-      
-      = yield
+      .row
+        - if content_for?(:sidebar)
+          .span2.well
+            = yield :sidebar
+        .span6
+          = yield
 
-      = debug(params) if Rails.env.development?
+    .container
+      .row
+        = debug(params) if Rails.env.development?

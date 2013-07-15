@@ -4,12 +4,14 @@ gem 'rails', '3.2.13'
 gem 'will_paginate'
 gem 'bootstrap-sass'
 gem 'will_paginate-bootstrap'
+gem 'font-awesome-sass-rails'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
+gem 'pg'
 gem 'devise'
 gem 'haml'
+gem 'texticle', :require => 'texticle/rails'
 
 
 # Gems used only for assets and not required
@@ -17,6 +19,7 @@ gem 'haml'
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
+
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
